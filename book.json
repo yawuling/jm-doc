@@ -1,4 +1,5 @@
 {
+  "root": "./docs",
   "gitbook": "3.2.3",
   "title": "京麦前端开发文档",
   "language": "zh-cn",
