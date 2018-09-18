@@ -1,6 +1,24 @@
-# 接口调用
+## 京麦 JSSDK PC 版文档
 
-## 2.1. 判断是否在京麦PC版客户端内部
+[TOC]
+
+> 本文档中的 PIN 都是指当前登录的用户名。
+
+### 1、文件引用
+
+京麦PC版JSSDK目前的版本是1.1.0。
+
+引入JSSDK文件方法如下：
+
+```javascript
+<script src="//jm-static.jd.com/jssdk/jmsdkPC-1.1.0.js"></script>
+```
+
+该 JS 文件在 window 上绑定了全局变量 `JmJsBridgePC`，用于调用 API 接口。
+
+### 2、接口调用
+
+#### 2.1、判断是否在京麦PC版客户端内部
 
 ```javascript
 var isInJMPC = JmJsBridgePC.isInJMPC();
@@ -8,7 +26,7 @@ var isInJMPC = JmJsBridgePC.isInJMPC();
 
 返回结果为true表示在京麦PC客户端内部。
 
-## 2.2. 判断是否在京麦Mac版客户端内部
+#### 2.2、判断是否在京麦Mac版客户端内部
 
 ```javascript
 var isInJMMac = JmJsBridgePC.isInJMMac();
@@ -16,7 +34,7 @@ var isInJMMac = JmJsBridgePC.isInJMMac();
 
 返回结果为true表示在京麦Mac客户端内部。
 
-## 2.3. 判断是否安装了京麦客户端（Windows和Mac）
+#### 2.3、判断是否安装了京麦客户端（Windows和Mac）
 
 ```javascript
 JmJsBridgePC.JMClient.checkJMClient(function(isInstall) {
@@ -38,7 +56,7 @@ JmJsBridgePC.JMClient.checkJMClient(function(isInstall) {
 });
 ```
 
-## 2.4. 启动京麦客户端
+#### 2.4、启动京麦客户端
 
 ```javascript
 JmJsBridgePC.openJM({
@@ -63,7 +81,7 @@ JmJsBridgePC.openJM({
 });
 ```
 
-## 2.5. 打开链接
+#### 2.5、打开链接
 
 ```javascript
 JmJsBridgePC.openUrl({
@@ -83,7 +101,7 @@ JmJsBridgePC.openUrl({
 });
 ```
 
-## 2.6. 打开插件
+#### 2.6、打开插件
 
 在客户端登录的时候，客户端会拉取一次用户的插件列表，只有在插件列表中的插件才可以打开。如果用户新订购了一个插件，或者续费了过期插件，则需要刷新插件列表再打开。
 
@@ -112,13 +130,13 @@ JmJsBridgePC.openPlugin({
 }, true)
 ```
 
-## 2.7. 刷新插件列表（只能在客户端内部使用）
+#### 2.7、刷新插件列表（只能在客户端内部使用）
 
 ```javascript
 JmJsBridgePC.updatePlugin();
 ```
 
-## 2.8. 启动咚咚
+#### 2.8、启动咚咚
 
 ```javascript
 JmJsBridgePC.openDD({
@@ -143,3 +161,4 @@ JmJsBridgePC.openDD({
     client: 'test_pop_deleteman'
 })
 ```
+
