@@ -4,7 +4,7 @@
 * [概述](概述.md)
 * [术语和缩略词](术语和缩略词.md)
 * [京麦JSSDK 移动版](jssdk-mobile/README.md)
-  * [接入流程](jssdk-mobile/文件引用.md)
+  * [文件引用](jssdk-mobile/文件引用.md)
   * [客户端管理](jssdk-mobile/客户端管理.md)
   * [接口调用](jssdk-mobile/接口调用.md)
 * [京麦JSSDK PC版](jssdk-PC/README.md)
