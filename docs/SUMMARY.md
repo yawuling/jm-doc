@@ -10,4 +10,5 @@
 * [京麦JSSDK PC版](jssdk-PC/README.md)
   * [文件引用](jssdk-PC/文件引用.md)
   * [接口调用](jssdk-PC/接口调用.md)
+  * [打开指定页面](jssdk-PC/打开指定页面.md)
 * [移动版服务接入评价评分](评价评分.md)
