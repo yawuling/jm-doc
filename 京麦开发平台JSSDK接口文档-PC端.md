@@ -1,10 +1,6 @@
 ## 京麦 JSSDK PC 版文档
 
-[TOC]
-
-> 本文档中的 PIN 都是指当前登录的用户名。
-
-### 1、文件引用
+### 文件引用
 
 京麦PC版JSSDK目前的版本是1.1.0。
 
@@ -16,9 +12,9 @@
 
 该 JS 文件在 window 上绑定了全局变量 `JmJsBridgePC`，用于调用 API 接口。
 
-### 2、接口调用
+### 接口调用
 
-#### 2.1、判断是否在京麦PC版客户端内部
+#### 判断是否在京麦PC版客户端内部
 
 ```javascript
 var isInJMPC = JmJsBridgePC.isInJMPC();
@@ -26,7 +22,7 @@ var isInJMPC = JmJsBridgePC.isInJMPC();
 
 返回结果为true表示在京麦PC客户端内部。
 
-#### 2.2、判断是否在京麦Mac版客户端内部
+#### 判断是否在京麦Mac版客户端内部
 
 ```javascript
 var isInJMMac = JmJsBridgePC.isInJMMac();
@@ -34,7 +30,7 @@ var isInJMMac = JmJsBridgePC.isInJMMac();
 
 返回结果为true表示在京麦Mac客户端内部。
 
-#### 2.3、判断是否安装了京麦客户端（Windows和Mac）
+#### 判断是否安装了京麦客户端（Windows）
 
 ```javascript
 JmJsBridgePC.JMClient.checkJMClient(function(isInstall) {
@@ -56,7 +52,7 @@ JmJsBridgePC.JMClient.checkJMClient(function(isInstall) {
 });
 ```
 
-#### 2.4、启动京麦客户端
+#### 启动京麦客户端
 
 ```javascript
 JmJsBridgePC.openJM({
@@ -81,7 +77,7 @@ JmJsBridgePC.openJM({
 });
 ```
 
-#### 2.5、打开链接
+#### 打开链接
 
 ```javascript
 JmJsBridgePC.openUrl({
@@ -101,7 +97,7 @@ JmJsBridgePC.openUrl({
 });
 ```
 
-#### 2.6、打开插件
+#### 打开插件
 
 在客户端登录的时候，客户端会拉取一次用户的插件列表，只有在插件列表中的插件才可以打开。如果用户新订购了一个插件，或者续费了过期插件，则需要刷新插件列表再打开。
 
@@ -130,13 +126,13 @@ JmJsBridgePC.openPlugin({
 }, true)
 ```
 
-#### 2.7、刷新插件列表（只能在客户端内部使用）
+#### 刷新插件列表（只能在客户端内部使用）
 
 ```javascript
 JmJsBridgePC.updatePlugin();
 ```
 
-#### 2.8、启动咚咚
+#### 启动咚咚
 
 ```javascript
 JmJsBridgePC.openDD({
@@ -160,5 +156,45 @@ JmJsBridgePC.openDD({
     pin: 'test_pop_7191',
     client: 'test_pop_deleteman'
 })
+```
+
+#### 打开指定页面
+
+京麦客户端（PC版）从`7.7.0`版本开始支持打开插件指定页面。
+
+##### 接入流程
+
+使用京麦打开插件指定页面，需要遵循京麦的插件打开协议。
+
+##### ISV 插件添加打开指定页面支持
+
+在打开插件时，京麦客户端在插件的回调地址（老版本插件叫启动地址）上拼接一个 `pageId` 参数，ISV在其插件首页获取这个 `pageId` 参数，根据约定好的规则由插件开发者重定向到指定页面。如果 `pageId` 为空，则不做任何跳转。
+
+回调地址参数拼接示例：`https://example.com/index.html?pageId=detail`。
+
+每个 `pageId` 需要由京麦生成唯一匹配的 `protocolId`，供JSSDK接口调用方调用。
+
+> `pageId` 生成唯一匹配的 `protocolId` 需要ISV发送邮件到 `fengyuan1@jd.com` 或者 `yangqi9@jd.com` ，在邮件只中写明插件名称，页面功能场景以及页面功能场景对应的pageId，由京麦进行生成匹配。
+
+##### JSSDK 接口调用“打开指定页面”功能
+
+> 该接口的调用方一般是京东商家研发，ISV只需要关心其插件是否配置了可以跳转到指定页面的 `pageId` 以及有其对应的唯一标识 `protocolId`。
+
+```javascript
+JmJsBridgePC.openPlugin({
+    pin: '',            // 登录用户pin
+    serviceCode: '',    // 服务标识
+    protocolId: ''      // 指定页面的标识
+}, canRefresh)          // canRefresh为true，则刷新插件列表
+```
+
+打开插件指定页面示例：
+
+```javascript
+JmJsBridgePC.openPlugin({
+    pin: 'test_pop_7191',
+    serviceCode: 'FW_GOODS-549217',
+    protocolId: '62db14ed537e406f8f704205cf34d92c'
+}, false)
 ```
 
