@@ -8,5 +8,7 @@
 * [京麦JSSDK PC版](jssdk-PC/README.md)
   * [文件引用](jssdk-PC/文件引用.md)
   * [接口调用](jssdk-PC/接口调用.md)
+  * [2.0版本](jssdk-PC/2.0.md)
+  * [2.0升级说明](jssdk-PC/2.0change.md)
 * [移动版服务接入评价评分](评价评分.md)
 * [术语和缩略词](术语和缩略词.md)
